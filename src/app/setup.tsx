@@ -1,5 +1,7 @@
 import { router } from 'expo-router';
-import { Linking, Pressable, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Image, Linking, Modal, Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ChunkyButton, FAQ, LinkText, ProgressBar, RichText, Screen, ScreenTitle, Sticker } from '../components/ui';
 import { countDone, setupSteps } from '../lib/setup';
@@ -9,7 +11,7 @@ import { chunky, colors } from '../lib/theme';
 const faqs = [
   {
     q: "I tapped + but there's no Charger option",
-    a: "You're in the **Library** tab (it has a + too, very rude of Apple). Go back, tap **Automation** at the bottom, then tap **+** there. The Automation + shows triggers like Time of Day, Alarm, and **Charger**.",
+    a: "You're in the **Library** tab (it has a + too, very rude of Apple). Tap **Automation** at the bottom. No automations yet? Use the blue **New Automation** button, since the Automation + only shows up once you have one.",
   },
   {
     q: "I can't find Chargey in the actions",
@@ -28,9 +30,13 @@ const faqs = [
   { q: 'it asks me to confirm before running', a: 'Edit the automation and switch it to **Run Immediately**.' },
 ];
 
+// The screenshots are phone screens, so keep the phone's proportions.
+const SHOT_ASPECT = 645 / 1398;
+
 export default function Setup() {
   const chargey = useChargey();
   const done = countDone(chargey.completedSteps);
+  const [zoomed, setZoomed] = useState<number | null>(null);
 
   return (
     <Screen>
@@ -60,6 +66,16 @@ export default function Setup() {
                     {step.emoji} {step.title}
                   </Text>
                   <RichText>{step.body}</RichText>
+                  {step.image != null && (
+                    <Pressable onPress={() => setZoomed(step.image!)} style={{ marginTop: 6 }}>
+                      <Image
+                        source={step.image}
+                        style={{ width: '78%', aspectRatio: SHOT_ASPECT, borderRadius: 16, borderWidth: 2, borderColor: colors.black }}
+                        resizeMode="cover"
+                      />
+                      <Text style={[chunky(12, '600'), { color: colors.faint, marginTop: 4 }]}>tap to zoom 🔍</Text>
+                    </Pressable>
+                  )}
                   {step.action === 'pickSound' && (
                     <LinkText label="go pick →" color={colors.slime} onPress={() => router.navigate('/sounds')} />
                   )}
@@ -83,7 +99,7 @@ export default function Setup() {
         <View style={{ gap: 8 }}>
           <Text style={chunky(19)}>BONUS: unplug sound 🎺</Text>
           <RichText>
-            {'Do steps 3–5 again but pick **Is Disconnected**. In the Chargey action, tap *Plugged in* and switch it to *Unplugged*. Now your phone is dramatic in both directions.'}
+            {'Do steps 3–7 again, but on the Charger screen tick **Is Disconnected** instead of Is Connected. Then open the new automation, tap *Plugged in* in the Chargey action and switch it to *Unplugged*. Now your phone is dramatic in both directions.'}
           </RichText>
         </View>
       </Sticker>
@@ -94,6 +110,17 @@ export default function Setup() {
           <FAQ key={f.q} q={f.q} a={f.a} />
         ))}
       </View>
+
+      <Modal visible={zoomed != null} animationType="fade" onRequestClose={() => setZoomed(null)}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }}>
+          <Pressable onPress={() => setZoomed(null)} style={{ flex: 1, padding: 16, gap: 12, alignItems: 'center' }}>
+            {zoomed != null && (
+              <Image source={zoomed} style={{ flex: 1, aspectRatio: SHOT_ASPECT, borderRadius: 24 }} resizeMode="contain" />
+            )}
+            <Text style={chunky(15, '700')}>tap anywhere to close</Text>
+          </Pressable>
+        </SafeAreaView>
+      </Modal>
     </Screen>
   );
 }

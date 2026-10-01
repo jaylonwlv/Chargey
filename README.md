@@ -61,11 +61,16 @@ installing so it writes the sound files.
 ## Setup flow (the same steps the app shows)
 
 1. Pick a sound in the **sounds** tab.
-2. Open **Shortcuts** → **Automation** tab.
-3. **+** → **Charger**.
-4. **Is Connected** → **Run Immediately** → turn off **Notify When Run** → Next.
-5. **New Blank Automation** → **Add Action** → search "Chargey" → **Play Chargey Sound** (Moment: *Plugged in*) → Done.
-6. Bonus: repeat with **Is Disconnected** and Moment: *Unplugged*.
+2. Open **Shortcuts**. It opens on **Library**; tap **Automation** at the bottom instead.
+3. Tap **New Automation** (or **+** top right if you already have automations).
+4. Scroll down and tap **Charger**.
+5. **Is Connected** is ticked by default. Pick **Run Immediately**, leave **Notify When Run** off, tap **Next**.
+6. In the app list, tap **Chargey**, then **Play Chargey Sound**. It saves on its own.
+7. Bonus: repeat with **Is Disconnected**, then open that automation and switch the action to *Unplugged*.
+
+The in-app guide shows a screenshot for each step (`assets/tutorial/`). To redo them from a new
+screen recording: `tools/make_tutorial.sh recording.mp4` (needs ffmpeg; adjust the timestamps
+and box coordinates in the script).
 
 ## Layout
 

@@ -3,9 +3,13 @@ export type SetupStep = {
   emoji: string;
   title: string;
   body: string;
+  /** Screenshot from a real run-through, tap target boxed in green. */
+  image?: number;
   action?: 'pickSound' | 'openShortcuts';
 };
 
+// Matches the real Shortcuts flow on iOS 26. Regenerate the screenshots with
+// tools/make_tutorial.sh if Apple moves things around again.
 export const setupSteps: SetupStep[] = [
   {
     id: 'pick',
@@ -17,33 +21,52 @@ export const setupSteps: SetupStep[] = [
   {
     id: 'open',
     emoji: '📲',
-    title: 'open Shortcuts → Automation',
-    body: "It's the Shortcuts app Apple pre-installed that you've never opened. Tap the **Automation** tab at the bottom. ⚠️ NOT **Library**: that tab has a + too and it's a trap. If you don't see the word *Charger* on the next screen, you're in the wrong tab.",
+    title: 'open Shortcuts, then tap Automation',
+    body: "Shortcuts opens on **Library**. That's the trap: it has a + too, and it leads nowhere useful. Tap **Automation** at the bottom.",
+    image: require('../../assets/tutorial/1-library-trap.jpg'),
     action: 'openShortcuts',
   },
   {
     id: 'new',
     emoji: '➕',
-    title: 'start a new automation',
-    body: "Still on the **Automation** tab? Good. Tap **+** in the top right (or **New Automation** if it's your first one). You'll see a list of triggers like Time of Day and Alarm. Scroll down and tap **Charger**.",
+    title: 'tap New Automation',
+    body: 'First automation ever? Tap the blue **New Automation** button. Already have some? Tap **+** in the top right instead.',
+    image: require('../../assets/tutorial/2-new-automation.jpg'),
+  },
+  {
+    id: 'charger',
+    emoji: '🔌',
+    title: 'scroll down, tap Charger',
+    body: "It's a long list. **Charger** lives near the bottom, under Battery Level.",
+    image: require('../../assets/tutorial/3-charger.jpg'),
   },
   {
     id: 'connected',
-    emoji: '🔌',
-    title: 'set it to "Is Connected"',
-    body: 'Select **Is Connected** and **Run Immediately** (not "after confirmation", we don\'t ask permission). Turn **Notify When Run** off so you don\'t get a banner every time. Tap **Next**.',
+    emoji: '✅',
+    title: 'Run Immediately, then Next',
+    body: "**Is Connected** should already be ticked. Pick **Run Immediately** (not after confirmation, we don't ask permission) and leave **Notify When Run** off. Tap **Next**.",
+    image: require('../../assets/tutorial/4-run-immediately.jpg'),
   },
   {
-    id: 'action',
+    id: 'chargey',
     emoji: '⚡️',
-    title: 'add the Chargey action',
-    body: 'Tap **New Blank Automation** → **Add Action** → search **Chargey** → tap **Play Chargey Sound**. Make sure it says *Plugged in*. Tap **Done**.',
+    title: 'find Chargey in the list',
+    body: 'Scroll the app list (it goes A to Z) and tap **Chargey**. Or type "Chargey" in the search bar at the bottom.',
+    image: require('../../assets/tutorial/5-pick-chargey.jpg'),
+  },
+  {
+    id: 'play',
+    emoji: '🔊',
+    title: 'tap Play Chargey Sound',
+    body: "That's it, it saves on its own. No Done button, no paperwork.",
+    image: require('../../assets/tutorial/6-play-sound.jpg'),
   },
   {
     id: 'test',
     emoji: '🧪',
     title: 'the vibe check',
-    body: "Unplug. Plug back in. If your phone screams, congrats, you're a developer now. Tell no one. (tell everyone.)",
+    body: "Your Automation tab should look like this. Now unplug, plug back in. If your phone screams, congrats, you're a developer now. Tell no one. (tell everyone.)",
+    image: require('../../assets/tutorial/7-done.jpg'),
   },
 ];
 

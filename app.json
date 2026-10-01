@@ -34,6 +34,13 @@
         }
       ],
       "./plugins/withChargeyIntent"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "91ce1a90-337a-4ac8-94e3-84ccb16bd46b"
+      }
+    },
+    "owner": "jayftr"
   }
 }

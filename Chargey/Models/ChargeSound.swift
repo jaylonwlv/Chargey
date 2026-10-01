@@ -18,6 +18,7 @@ struct ChargeSound: Identifiable, Codable, Hashable {
     }
 
     static let builtIns: [ChargeSound] = [
+        .init(id: "ggez", name: "gg ez", emoji: "🏆", vibe: "you plugged in. you won. simple as.", fileName: "ggez.m4a", isCustom: false),
         .init(id: "power_up", name: "power up fr", emoji: "⚡️", vibe: "8-bit hero arc. main character energy.", fileName: "power_up.wav", isCustom: false),
         .init(id: "airhorn", name: "airhorn (respectfully)", emoji: "📯", vibe: "3% → plugged in is a W. celebrate it.", fileName: "airhorn.wav", isCustom: false),
         .init(id: "the_boom", name: "the boom", emoji: "💥", vibe: "every plug-in is a plot twist.", fileName: "the_boom.wav", isCustom: false),

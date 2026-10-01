@@ -116,7 +116,7 @@ export default function Setup() {
 
       <Sticker accent={colors.bubblegum}>
         <View style={{ gap: 8 }}>
-          <Text style={chunky(19)}>BONUS: unplug sound 🎺</Text>
+          <Text style={chunky(19)}>BONUS: unplug sound 🚪</Text>
           <RichText>
             {'Do steps 3–7 again, but on the Charger screen tick **Is Disconnected** instead of Is Connected. Then open the new automation, tap *Plugged in* in the Chargey action and switch it to *Unplugged*. Now your phone is dramatic in both directions.'}
           </RichText>

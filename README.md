@@ -1,6 +1,6 @@
 # chargey ⚡️
 
-Your phone's hype man. Plug in → it plays a sound. Unplug → (optionally) a sad trombone.
+Your phone's hype man. Plug in → it plays a sound. Unplug → (optionally) a "GET OUT".
 
 Built with **Expo (SDK 57) + Expo Router**. No Mac needed: EAS builds the iOS app in the cloud,
 and Metro serves the JS from your Linux machine.
@@ -79,12 +79,12 @@ src/app/            Expo Router screens: _layout (tabs + onboarding), index (hom
 src/components/     ui.tsx (sticker cards, chunky buttons, rich text, FAQ), BatteryHero, Onboarding
 src/lib/            sounds (catalog), storage (files the Shortcuts action reads), store (app state), setup, theme
 plugins/            withChargeyIntent.js + ios/ChargeyIntent.swift (the native Shortcuts action)
-assets/sounds/      built-in sounds (gg ez is a real clip; the rest are synthesized placeholders)
-tools/              make_sounds.py, make_icon.py (stdlib Python)
+assets/sounds/      built-in sounds (sources and licenses in assets/sounds/CREDITS.md)
+tools/              make_icon.py (app icon), make_tutorial.py (setup screenshots)
 ```
 
-To add a built-in sound: drop the file into `assets/sounds/` and add an entry to
-`builtInSounds` in `src/lib/sounds.ts`.
+To add a built-in sound: drop the file into `assets/sounds/`, add an entry to
+`builtInSounds` in `src/lib/sounds.ts`, and log its source and license in `assets/sounds/CREDITS.md`.
 
 ## Checks
 

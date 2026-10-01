@@ -9,7 +9,7 @@ BG = (199, 255, 0)
 SHADOW = (255, 61, 154)
 BOLT = (15, 13, 23)
 POINTS = [(600, 90), (250, 570), (480, 570), (400, 940), (780, 430), (550, 430), (650, 90)]
-OUT = os.path.join(os.path.dirname(__file__), "..", "Chargey", "Assets.xcassets", "AppIcon.appiconset", "icon-1024.png")
+OUT = os.path.join(os.path.dirname(__file__), "..", "assets", "icon.png")
 
 
 def inside(x, y, poly):

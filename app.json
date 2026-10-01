@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Chargey",
+    "slug": "chargey",
+    "scheme": "chargey",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F0D17"
+    },
+    "ios": {
+      "bundleIdentifier": "com.jaylonw.chargey",
+      "supportsTablet": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "enableBackgroundPlayback": true
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "17.0"
+          }
+        }
+      ],
+      "./plugins/withChargeyIntent"
+    ]
+  }
+}

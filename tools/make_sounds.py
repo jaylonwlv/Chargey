@@ -3,7 +3,7 @@
 
     python3 tools/make_sounds.py
 
-Writes 44.1kHz 16-bit mono WAVs into Chargey/Resources/Sounds/.
+Writes 44.1kHz 16-bit mono WAVs into assets/sounds/.
 """
 import math
 import os
@@ -12,7 +12,7 @@ import struct
 import wave
 
 RATE = 44100
-OUT = os.path.join(os.path.dirname(__file__), "..", "Chargey", "Resources", "Sounds")
+OUT = os.path.join(os.path.dirname(__file__), "..", "assets", "sounds")
 
 
 def silence(sec):

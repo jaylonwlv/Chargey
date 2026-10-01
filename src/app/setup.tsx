@@ -8,6 +8,10 @@ import { chunky, colors } from '../lib/theme';
 
 const faqs = [
   {
+    q: "I tapped + but there's no Charger option",
+    a: "You're in the **Library** tab (it has a + too, very rude of Apple). Go back, tap **Automation** at the bottom, then tap **+** there. The Automation + shows triggers like Time of Day, Alarm, and **Charger**.",
+  },
+  {
     q: "I can't find Chargey in the actions",
     a: "Open Chargey at least once (you're here, so ✅). Then force-quit Shortcuts and reopen it. iOS takes a sec to notice new apps. Still nothing? Restart your phone. The classic.",
   },

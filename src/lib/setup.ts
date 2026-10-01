@@ -18,14 +18,14 @@ export const setupSteps: SetupStep[] = [
     id: 'open',
     emoji: '📲',
     title: 'open Shortcuts → Automation',
-    body: "It's the Shortcuts app Apple pre-installed that you've never opened. Tap the **Automation** tab at the bottom.",
+    body: "It's the Shortcuts app Apple pre-installed that you've never opened. Tap the **Automation** tab at the bottom. ⚠️ NOT **Library**: that tab has a + too and it's a trap. If you don't see the word *Charger* on the next screen, you're in the wrong tab.",
     action: 'openShortcuts',
   },
   {
     id: 'new',
     emoji: '➕',
     title: 'start a new automation',
-    body: "Tap **+** in the top right (or **New Automation** if it's your first one). Scroll down and tap **Charger**.",
+    body: "Still on the **Automation** tab? Good. Tap **+** in the top right (or **New Automation** if it's your first one). You'll see a list of triggers like Time of Day and Alarm. Scroll down and tap **Charger**.",
   },
   {
     id: 'connected',

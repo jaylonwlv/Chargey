@@ -69,8 +69,8 @@ installing so it writes the sound files.
 7. Bonus: repeat with **Is Disconnected**, then open that automation and switch the action to *Unplugged*.
 
 The in-app guide shows a screenshot for each step (`assets/tutorial/`). To redo them from a new
-screen recording: `tools/make_tutorial.sh recording.mp4` (needs ffmpeg; adjust the timestamps
-and box coordinates in the script).
+screen recording: `python3 tools/make_tutorial.py recording.mp4` (needs ffmpeg). Each shot's
+timestamp, crop, tap targets and labels are listed at the top of the script.
 
 ## Layout
 

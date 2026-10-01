@@ -30,13 +30,25 @@ const faqs = [
   { q: 'it asks me to confirm before running', a: 'Edit the automation and switch it to **Run Immediately**.' },
 ];
 
-// The screenshots are phone screens, so keep the phone's proportions (width / height).
-const SHOT_ASPECT = 645 / 1398;
 /** Room the step card takes around the screenshot: screen padding, card padding/border, number bubble. */
 const CARD_CHROME = 140;
-const THUMB_MAX_WIDTH = 220;
+/** Keeps screenshots sane on big screens (iPad, landscape). */
+const THUMB_MAX_WIDTH = 360;
 /** Room the zoom view keeps for safe areas and the "tap to close" line. */
 const ZOOM_CHROME = 140;
+
+/** Screenshots are cropped to different shapes, so read each one's width / height. */
+function aspectOf(image: number) {
+  const { width, height } = Image.resolveAssetSource(image);
+  return width / height;
+}
+
+/** Largest size with the image's proportions that fits inside maxWidth x maxHeight. */
+function fit(image: number, maxWidth: number, maxHeight: number) {
+  const aspect = aspectOf(image);
+  const width = Math.min(maxWidth, maxHeight * aspect);
+  return { width, height: width / aspect };
+}
 
 export default function Setup() {
   const chargey = useChargey();
@@ -44,9 +56,6 @@ export default function Setup() {
   const [zoomed, setZoomed] = useState<number | null>(null);
   const screen = useWindowDimensions();
   const thumbWidth = Math.min(screen.width - CARD_CHROME, THUMB_MAX_WIDTH);
-  const thumb = { width: thumbWidth, height: thumbWidth / SHOT_ASPECT };
-  const zoomWidth = Math.min(screen.width - 32, (screen.height - ZOOM_CHROME) * SHOT_ASPECT);
-  const zoom = { width: zoomWidth, height: zoomWidth / SHOT_ASPECT };
 
   return (
     <Screen>
@@ -80,7 +89,7 @@ export default function Setup() {
                     <Pressable onPress={() => setZoomed(step.image!)} style={{ marginTop: 6 }}>
                       <Image
                         source={step.image}
-                        style={[thumb, { borderRadius: 16, borderWidth: 2, borderColor: colors.black }]}
+                        style={[fit(step.image, thumbWidth, screen.height), { borderRadius: 16, borderWidth: 2, borderColor: colors.black }]}
                         resizeMode="cover"
                       />
                       <Text style={[chunky(12, '600'), { color: colors.faint, marginTop: 4 }]}>tap to zoom 🔍</Text>
@@ -125,7 +134,7 @@ export default function Setup() {
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }}>
           <Pressable onPress={() => setZoomed(null)} style={{ flex: 1, padding: 16, gap: 12, alignItems: 'center', justifyContent: 'center' }}>
             {zoomed != null && (
-              <Image source={zoomed} style={[zoom, { borderRadius: 24 }]} resizeMode="contain" />
+              <Image source={zoomed} style={[fit(zoomed, screen.width - 32, screen.height - ZOOM_CHROME), { borderRadius: 24 }]} resizeMode="contain" />
             )}
             <Text style={chunky(15, '700')}>tap anywhere to close</Text>
           </Pressable>

@@ -9,7 +9,7 @@ export type SetupStep = {
 };
 
 // Matches the real Shortcuts flow on iOS 26. Regenerate the screenshots with
-// tools/make_tutorial.sh if Apple moves things around again.
+// tools/make_tutorial.py if Apple moves things around again.
 export const setupSteps: SetupStep[] = [
   {
     id: 'pick',

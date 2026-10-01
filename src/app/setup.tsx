@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Image, Linking, Modal, Pressable, Text, View } from 'react-native';
+import { Image, Linking, Modal, Pressable, Text, useWindowDimensions, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ChunkyButton, FAQ, LinkText, ProgressBar, RichText, Screen, ScreenTitle, Sticker } from '../components/ui';
@@ -30,13 +30,23 @@ const faqs = [
   { q: 'it asks me to confirm before running', a: 'Edit the automation and switch it to **Run Immediately**.' },
 ];
 
-// The screenshots are phone screens, so keep the phone's proportions.
+// The screenshots are phone screens, so keep the phone's proportions (width / height).
 const SHOT_ASPECT = 645 / 1398;
+/** Room the step card takes around the screenshot: screen padding, card padding/border, number bubble. */
+const CARD_CHROME = 140;
+const THUMB_MAX_WIDTH = 220;
+/** Room the zoom view keeps for safe areas and the "tap to close" line. */
+const ZOOM_CHROME = 140;
 
 export default function Setup() {
   const chargey = useChargey();
   const done = countDone(chargey.completedSteps);
   const [zoomed, setZoomed] = useState<number | null>(null);
+  const screen = useWindowDimensions();
+  const thumbWidth = Math.min(screen.width - CARD_CHROME, THUMB_MAX_WIDTH);
+  const thumb = { width: thumbWidth, height: thumbWidth / SHOT_ASPECT };
+  const zoomWidth = Math.min(screen.width - 32, (screen.height - ZOOM_CHROME) * SHOT_ASPECT);
+  const zoom = { width: zoomWidth, height: zoomWidth / SHOT_ASPECT };
 
   return (
     <Screen>
@@ -70,7 +80,7 @@ export default function Setup() {
                     <Pressable onPress={() => setZoomed(step.image!)} style={{ marginTop: 6 }}>
                       <Image
                         source={step.image}
-                        style={{ width: '78%', aspectRatio: SHOT_ASPECT, borderRadius: 16, borderWidth: 2, borderColor: colors.black }}
+                        style={[thumb, { borderRadius: 16, borderWidth: 2, borderColor: colors.black }]}
                         resizeMode="cover"
                       />
                       <Text style={[chunky(12, '600'), { color: colors.faint, marginTop: 4 }]}>tap to zoom 🔍</Text>
@@ -113,9 +123,9 @@ export default function Setup() {
 
       <Modal visible={zoomed != null} animationType="fade" onRequestClose={() => setZoomed(null)}>
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }}>
-          <Pressable onPress={() => setZoomed(null)} style={{ flex: 1, padding: 16, gap: 12, alignItems: 'center' }}>
+          <Pressable onPress={() => setZoomed(null)} style={{ flex: 1, padding: 16, gap: 12, alignItems: 'center', justifyContent: 'center' }}>
             {zoomed != null && (
-              <Image source={zoomed} style={{ flex: 1, aspectRatio: SHOT_ASPECT, borderRadius: 24 }} resizeMode="contain" />
+              <Image source={zoomed} style={[zoom, { borderRadius: 24 }]} resizeMode="contain" />
             )}
             <Text style={chunky(15, '700')}>tap anywhere to close</Text>
           </Pressable>

@@ -14,7 +14,7 @@ const pages = [
   {
     emoji: '🗣️',
     title: 'plug in → it SCREAMS',
-    body: 'flashbangs. jump scares. a GET OUT when you unplug. pick your fighter or upload your own.',
+    body: 'flashbangs. trickshots. a GET OUT when you unplug. pick your fighter or upload your own.',
   },
   {
     emoji: '🤝',

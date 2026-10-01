@@ -16,8 +16,8 @@ Apple review or a rights holder may ask.
 | get_out.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
 | ahh_fade.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
 | stock_horror.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
-| jump_scare_1.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
-| jump_scare_2.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
+| trickshot_1.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
+| trickshot_2.m4a | Royalty-free sound library (TODO) | Royalty-free (TODO) | TODO |
 | ggez.m4a | Provided by the developer (TODO: original source) | TODO | TODO |
 
 Processing: converted from 44.1 kHz stereo WAV to mono AAC (96 kbps) with a 50/50 channel mix.

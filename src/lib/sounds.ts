@@ -35,6 +35,6 @@ export const builtInSounds: ChargeSound[] = [
   { id: 'get_out', name: 'GET OUT', emoji: '🚪', vibe: 'elite unplug sound. the charger has been evicted.', source: require('../../assets/sounds/get_out.m4a'), ext: 'm4a', isCustom: false },
   { id: 'ahh_fade', name: 'AHH (fade)', emoji: '🫥', vibe: 'your phone, slowly drifting off without its charger.', source: require('../../assets/sounds/ahh_fade.m4a'), ext: 'm4a', isCustom: false },
   { id: 'stock_horror', name: 'stock horror', emoji: '👻', vibe: 'something is living in the outlet.', source: require('../../assets/sounds/stock_horror.m4a'), ext: 'm4a', isCustom: false },
-  { id: 'jump_scare_1', name: 'jump scare', emoji: '😨', vibe: 'and you thought charging was safe.', source: require('../../assets/sounds/jump_scare_1.m4a'), ext: 'm4a', isCustom: false },
-  { id: 'jump_scare_2', name: 'jump scare 2', emoji: '💀', vibe: 'the sequel. scarier. zero budget.', source: require('../../assets/sounds/jump_scare_2.m4a'), ext: 'm4a', isCustom: false },
+  { id: 'trickshot_1', name: 'trickshot', emoji: '🎯', vibe: '360 no-scope into the charging port.', source: require('../../assets/sounds/trickshot_1.m4a'), ext: 'm4a', isCustom: false },
+  { id: 'trickshot_2', name: 'trickshot 2', emoji: '🔥', vibe: 'plugged in from across the room. clip it.', source: require('../../assets/sounds/trickshot_2.m4a'), ext: 'm4a', isCustom: false },
 ];
